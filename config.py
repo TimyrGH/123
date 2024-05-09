@@ -8,7 +8,8 @@ COUNT_LAST_MSG = 3  # Количество сохраняемых сообщен
 
 HOME_DIR = '/home/student/final_project'  # путь к папке с проектом
 LOGS = 'logs.txt'  # файл для логов
-DB_FILE = 'messages.db'  # файл для базы данных
+DB_FILE = f'{HOME_DIR}/messages.db'  # файл для базы данных
 
 SYSTEM_PROMPT = [{'role': 'system', 'text': """Ты GPT-модель, которая должна отвечать на все вопросы пользователя.
                                                Будь вежливым"""}]  # как будет отвечать GPT(СИСТЕМНЫЙ ПРОМПТ)
+

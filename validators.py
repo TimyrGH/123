@@ -6,6 +6,7 @@ from database import count_all_limits
 logging.basicConfig(filename=LOGS, level=logging.ERROR,
                     format="%(asctime)s FILE: %(filename)s IN: %(funcName)s MESSAGE: %(message)s", filemode="w")
 
+
 # Проверка лимита символов голосового сообщения
 def is_tts_symbol_limit(message, text):
     user_id = message.chat.id

@@ -8,6 +8,7 @@ logging.basicConfig(filename=LOGS, level=logging.ERROR,
 
 path_to_db = DB_FILE  # файл базы данных
 
+
 # Создание БД
 def create_database():
     try:

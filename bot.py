@@ -6,12 +6,14 @@ from speechkit import *
 create_database()
 bot = telebot.TeleBot(token)
 
+
 # Обработчик команды start
 @bot.message_handler(commands=["start"])
 def start_message(message):
     user_id = message.from_user.id
     bot.send_message(user_id, """Этот GPT-бот ответит на все твои вопросы хоть в текстовом, хоть в голосовом
                                                                формате! Можешь задавать интересующие тебя вопросы""")
+
 
 # Обработчик команды help
 @bot.message_handler(commands=["help"])
@@ -20,6 +22,7 @@ def help_message(message):
     bot.send_message(user_id, """Если задашь вопрос в голосовом формате, то он тоже ответит голосовым сообщением,
                                                                                             так же будет и с текстом""")
 
+
 # Проверка stt
 @bot.message_handler(commands=['stt'])   # stt
 def stt_handler(message):
@@ -27,6 +30,7 @@ def stt_handler(message):
     bot.send_message(user_id, """Отправь следующим сообщением голосовое сообщение, чтобы я на него 
                                                                   тоже ответил голосовым сообщением!""")
     bot.register_next_step_handler(message, stt)
+
 
 # Основная функиция для работы sst
 def stt(message):
@@ -58,12 +62,14 @@ def stt(message):
     else:
         bot.send_message(user_id, text)
 
+
 # Проверка tts
 @bot.message_handler(commands=['tts'])       # tts
 def tts_handler(message):
     user_id = message.from_user.id
     bot.send_message(user_id, 'Отправь следующим сообщением текст, чтобы я его озвучил!')
     bot.register_next_step_handler(message, tts)
+
 
 # Основная функиция для работы tts
 def tts(message):
@@ -92,6 +98,7 @@ def tts(message):
         bot.send_voice(user_id, content)
     else:
         bot.send_message(user_id, content)
+
 
 # Основная функция для обработки ГОЛОСОВОГО сообщения и ответа на нее GPT
 @bot.message_handler(content_types=['voice'])
@@ -145,6 +152,7 @@ def handle_voice(message):
         bot.send_voice(user_id, voice_response, reply_to_message_id=message.id)
     else:
         bot.send_message(user_id, answer_gpt, reply_to_message_id=message.id)
+
 
 # Основная функция для обработки ТЕКСТОВОГО сообщения и ответа на нее GPT
 @bot.message_handler(content_types=['text'])
